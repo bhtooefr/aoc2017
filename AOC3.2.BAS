@@ -1,0 +1,34 @@
+ 10  INPUT "PUZZLE INPUT? ";I$:PI =  VAL (I$)
+ 20  DIM GD(10,10):GX% = 4:GY% = 4:DI$ = "R":LL% = 1:LR% = 1:VA = 1
+ 30 GD(GX%,GY%) = VA
+ 500 GX% = GX% + 1
+ 520  GOSUB 1000
+ 530  IF LR% > 0 THEN  GOTO 500
+ 540 DI$ = "U":LR% = LL%
+ 600 GY% = GY% + 1
+ 620  GOSUB 1000
+ 630  IF LR% > 0 THEN  GOTO 600
+ 640 DI$ = "L":LL% = LL% + 1:LR% = LL%
+ 700 GX% = GX% - 1
+ 720  GOSUB 1000
+ 730  IF LR% > 0 THEN  GOTO 700
+ 740 DI$ = "D":LR% = LL%
+ 800 GY% = GY% - 1
+ 820  GOSUB 1000
+ 830  IF LR% > 0 THEN  GOTO 800
+ 840 DI$ = "R":LL% = LL% + 1:LR% = LL%
+ 850  GOTO 500
+ 1000 LR% = LR% - 1
+ 1010 VA = GD(GX% + 1,GY%) + GD(GX% + 1,GY% + 1) + GD(GX%,GY% + 1) + GD(GX% - 1,GY% + 1) + GD(GX% - 1,GY%) + GD(GX% - 1,GY% - 1) + GD(GX%,GY% - 1) + GD(GX% + 1,GY% - 1)
+ 1020 GD(GX%,GY%) = VA
+ 1040  IF VA > PI THEN  GOTO 2000
+ 1050  RETURN 
+ 2000  HOME 
+ 2010  FOR R = 0 TO 10
+ 2020  FOR C = 0 TO 10
+ 2030  HTAB (C * 6) + 1: VTAB 16 - R: PRINT GD(C,R)
+ 2040  NEXT C
+ 2050  NEXT R
+ 2060  VTAB 20
+ 2070  PRINT VA
+ 2080  END 
