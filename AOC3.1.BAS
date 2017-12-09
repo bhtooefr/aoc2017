@@ -1,0 +1,38 @@
+ 10  INPUT "PUZZLE INPUT? ";I$:PI =  VAL (I$)
+ 20 GX% = 0:GY% = 0:DI$ = "R":LL% = 1:VA = 1
+ 30  IF VA = PI THEN  GOSUB 1000
+ 40  IF DI$ = "R" THEN  GOTO 500
+ 50  IF DI$ = "U" THEN  GOTO 600
+ 60  IF DI$ = "L" THEN  GOTO 700
+ 70  IF DI$ = "D" THEN  GOTO 800
+ 80  IF VA = PI THEN  GOSUB 1000
+ 90  IF VA > PI THEN  GOSUB 900
+ 100  GOTO 40
+ 500 GX% = GX% + LL%
+ 510 VA = VA + LL%
+ 520 DI$ = "U"
+ 530  GOTO 80
+ 600 GY% = GY% + LL%
+ 610 VA = VA + LL%
+ 620 DI$ = "L"
+ 630 LL% = LL% + 1
+ 640  GOTO 80
+ 700 GX% = GX% - LL%
+ 710 VA = VA + LL%
+ 720 DI$ = "D"
+ 730  GOTO 80
+ 800 GY% = GY% - LL%
+ 810 VA = VA + LL%
+ 820 DI$ = "R"
+ 830 LL% = LL% + 1
+ 840  GOTO 80
+ 900  IF DI$ = "R" THEN  GOTO 940
+ 910  IF DI$ = "U" THEN  GOTO 950
+ 920  IF DI$ = "L" THEN  GOTO 960
+ 930  IF DI$ = "D" THEN  GOTO 970
+ 940 GY% = GY% + (VA - PI): GOSUB 1000
+ 950 GX% = GX% - (VA - PI): GOSUB 1000
+ 960 GY% = GY% - (VA - PI): GOSUB 1000
+ 970 GX% = GX% + (VA - PI): GOSUB 1000
+ 1000  PRINT  ABS (GX%) +  ABS (GY%)
+ 1010  END 
